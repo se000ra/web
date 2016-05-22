@@ -4,7 +4,6 @@ from cgi import parse_qs
 #def wsgi_app(env,resp):
 def app(env,start_response):
     query = parse_qs(env['QUERY_STRING'], keep_blank_values=1)
-    print query
     # res = [k+v+'\r\n' for  in query]
     # res = ''.join(res)
     body = []
