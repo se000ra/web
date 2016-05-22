@@ -5,11 +5,15 @@ from cgi import parse_qs
 def app(env,start_response):
     query = parse_qs(env['QUERY_STRING'], keep_blank_values=1)
     print query
-    res = [i+'\r\n' for i in query]
-    res = ''.join(res)
+    # res = [k+v+'\r\n' for  in query]
+    # res = ''.join(res)
+    body = []
+    for key, values in query.items():
+        for item in values:
+            body.append(key + "=" + item + "\r\n")
 
     status = '200 OK'
     headers = [('Content-Type','text/plain')]
     start_response(status, headers)
-    # return[body]
-    return[res]
+    return[body]
+    # return[res]
